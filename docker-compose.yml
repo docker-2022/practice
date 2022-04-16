@@ -1,0 +1,7 @@
+
+# source: https://medium.com/@chandrajeetmaurya/docker-compose-setting-up-web-development-stack-step-by-step-81e557a69863
+
+version: "2"
+services:
+    php: #service name
+      image: php:7-apache #image we want to use
