@@ -3,6 +3,7 @@
 1. SHOW LIST OF CONTAINER 
 - docker-compose ps
 - docker container ls
+- docker ps
 
 2. GITINSIDE OF THE DOCKER CONTAINER
 - docker exec -it <container_id> /bin/bash
@@ -25,3 +26,8 @@ docker compose ls
 8. How to run commands inside docker while not using ssh into container
 - docker exec <container_id> php -v
 - docker-compose exec php php -v
+
+9. How to run and install packages inside docker container if not exist? throught external CLI in windows 10
+- docker exec <container-name> apt-get update
+- docker exec <container-name> apt-get install vi
+- docker exec <container-name> apt-get install nano
