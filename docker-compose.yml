@@ -26,4 +26,4 @@ services:
         ports:
           - 8080:80 #<-- without link below, we can access the phpmyadmin host:port -> http://127.0.0.1:8080/ but can't login, and if added with link then we can now login to root/root. Just make sure to run docker-compose up -d when you have changes to your docker-compose.yml.yml file
         links:
-              - mysql:db #<--- this will allow us to login in phpmyadmin with the username and password for root/root
+              - mysql:db #<---  links: <service-name>:<alias-name> this will allow us to login in phpmyadmin with the username and password for root/root
