@@ -5,3 +5,5 @@ version: "2"
 services:
     php: #service name
       build: ./php #image we want to use
+      ports:
+        - 8090:80 #<-- to visit this site once up and running 127.0.0.1:8090 but it says  (You don’t have permission to access this resource. Apache/2.4.38 (Debian) Server at 127.0.0.1 Port 8090) but atleast we can now access with port
