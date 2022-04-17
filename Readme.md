@@ -17,7 +17,7 @@
 - docker-compose up -d
 
 6. Run docker and continue running in command line
-- docker-compose up -d
+- docker-compose up
 
 7. Show source of the docker file 
 docker compose ls
