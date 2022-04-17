@@ -1,6 +1,8 @@
 
 # source1: php, apache, folder, access, port - https://medium.com/@chandrajeetmaurya/docker-compose-setting-up-web-development-stack-step-by-step-81e557a69863
 # source2: mysql - https://medium.com/@chandrajeetmaurya/docker-compose-setting-up-web-development-stack-step-by-step-part-2-mysql-298b13c6483e
+# source3: mariadb - https://hub.docker.com/_/mariadb
+# source4: https://medium.com/@chandrajeetmaurya/docker-compose-setting-up-web-development-stack-step-by-step-part-3-phpmyadmin-23c6d67768b7
 version: "3.7"
 services:
     php: #service name
@@ -18,3 +20,10 @@ services:
              MYSQL_USER: myusername
              MYSQL_PASSWORD: mypassword
              MYSQL_DATABASE: mydatabase
+
+    pma:
+        image: phpmyadmin/phpmyadmin
+        ports:
+          - 8080:80 #<-- without link below, we can access the phpmyadmin host:port -> http://127.0.0.1:8080/ but can't login, and if added with link then we can now login to root/root. Just make sure to run docker-compose up -d when you have changes to your docker-compose.yml.yml file
+        links:
+              - mysql:db #<--- this will allow us to login in phpmyadmin with the username and password for root/root
