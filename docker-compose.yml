@@ -4,4 +4,4 @@
 version: "2"
 services:
     php: #service name
-      image: php:7-apache #image we want to use
+      build: ./php #image we want to use
