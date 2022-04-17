@@ -1,7 +1,7 @@
 
-# source: https://medium.com/@chandrajeetmaurya/docker-compose-setting-up-web-development-stack-step-by-step-81e557a69863
-
-version: "2"
+# source1: php, apache, folder, access, port - https://medium.com/@chandrajeetmaurya/docker-compose-setting-up-web-development-stack-step-by-step-81e557a69863
+# source2: mysql - https://medium.com/@chandrajeetmaurya/docker-compose-setting-up-web-development-stack-step-by-step-part-2-mysql-298b13c6483e
+version: "3.7"
 services:
     php: #service name
       build: ./php #image we want to use
@@ -9,3 +9,12 @@ services:
         - 8090:80 #<-- to visit this site once up and running 127.0.0.1:8090 but it says  (You don’t have permission to access this resource. Apache/2.4.38 (Debian) Server at 127.0.0.1 Port 8090) but atleast we can now access with port
       volumes:
         - ./www/app:/var/www/html # <----/var/www/html is in apache and my folder ./www/app folder is pointed to apache /var/www/html (so it's overriding the apache content
+
+    db: #<--- after adding new container and services you must run docker-compose up -d to recreated (I used mariadb because mysql is having issue in my version I don't know why is that happening.) The issue was about  -- too many symbolic links
+        image: mariadb
+        restart: always
+        environment:
+             MYSQL_ROOT_PASSWORD: root
+             MYSQL_USER: myusername
+             MYSQL_PASSWORD: mypassword
+             MYSQL_DATABASE: mydatabase
