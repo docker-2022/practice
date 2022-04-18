@@ -13,3 +13,7 @@ RUN composer --version
 ADD https://packages.zendframework.com/releases/ZendFramework-1.12.20/ZendFramework-1.12.20.tar.gz /usr/local/lib/php/
 
 RUN apt-get install systemctl
+
+
+
+
