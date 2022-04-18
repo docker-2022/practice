@@ -2,7 +2,8 @@
 
 #composer install --no-suggest --no-interaction --no-scripts --no-progress --prefer-dist
 
-if [ ! -e /var/www/randstad-onboarding/db.lock ]; then
+if [ ! -e /var/www/html/backend/db.lock ]; then
+  php artisan migrate
   #php artisan migrate:fresh
   #php artisan passport:install
   #php artisan db:seed --class=LiveDatabaseTableSeeder

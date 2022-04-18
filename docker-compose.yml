@@ -13,7 +13,7 @@ services:
           context: .
           dockerfile: /docker/web/Dockerfile
       ports:
-        - 8090:80 #<-- to visit this site once up and running 127.0.0.1:8090 but it says  (You don’t have permission to access this resource. Apache/2.4.38 (Debian) Server at 127.0.0.1 Port 8090) but atleast we can now access with port
+        - 80:80 #<-- to visit this site once up and running 127.0.0.1:8090 but it says  (You don’t have permission to access this resource. Apache/2.4.38 (Debian) Server at 127.0.0.1 Port 8090) but atleast we can now access with port
 #      tty: true
 #      working_dir: /var/www/html/public
       volumes:
@@ -27,14 +27,21 @@ services:
         - ./docker/web/apache2/sites-enabled:/etc/apache2/sites-available/
       # - ./docker/etc/apache2/php.ini:/usr/local/etc/php/php.ini
       depends_on:
-          - db
+        - "db"
       networks:
         - default
+      #links:
+      #  - mysql:database
     db: #<--- after adding new container and services you must run docker-compose up -d to recreated (I used mariadb because mysql is having issue in my version I don't know why is that happening.) The issue was about  -- too many symbolic links
-        #<--- I can connect to the server through host:localhost, user:root, pass:root, port3306, database:mydatabase
+        #<--- I can connect to the server through in phpstorm,syslogs - host:localhost, user:root, pass:root, port3306, database:mydatabase
+        #<--- I can connect with laravel .env throught this information host:db, user:root, pass:root, port:3306, database:mydatabase
+        # -  in the .env host must be inline to db docker service name
+
         container_name: practice_database_1
+        restart: unless-stopped
+        tty: true
         ports:
-           - "3306:3306"
+           - 3306:3306
         image: mariadb
         restart: always
         environment:
